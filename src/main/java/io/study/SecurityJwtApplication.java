@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 * BASE64(Header)
 * BASE64(Payload)
 * BASE64(HS256Secure(LowSig))
-* 
+*
 * */
 
 
