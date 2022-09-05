@@ -1,6 +1,6 @@
 package io.study.config;
 
-import io.study.filter.MyFilter;
+
 import io.study.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +34,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception {
         http.csrf().disable();
-        http.addFilterBefore(new MyFilter(), BasicAuthenticationFilter.class);
+//        http.addFilterBefore(new MyFilter(), BasicAuthenticationFilter.class);
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

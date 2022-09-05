@@ -1,6 +1,8 @@
 package io.study.config;
 
 import io.study.jwt.JwtAuthenticationFilter;
+import io.study.jwt.JwtAuthorizationFilter;
+import io.study.repository.UserRepository;
 import io.study.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,13 +19,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class AuthenticationManagerConfig extends AbstractHttpConfigurer<AuthenticationManagerConfig, HttpSecurity> {
     private final CorsConfig corsConfig;
+    private final UserRepository userRepository;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
         http
                 .addFilter(corsConfig.corsFilter())
-                .addFilter(new JwtAuthenticationFilter(authenticationManager));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager, userRepository));
     }
 
     @Bean

@@ -26,4 +26,19 @@ public class RestApiController {
         userService.createUser(request);
         return "ok";
     }
+
+    @GetMapping("api/v1/user")
+    public String user() {
+        return "user";
+    }
+
+    @GetMapping("api/v1/manager")
+    public String manager() {
+        return "manager";
+    }
+
+    @GetMapping("api/v1/admin")
+    public String admin() {
+        return "admin";
+    }
 }

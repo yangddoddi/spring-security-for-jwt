@@ -61,12 +61,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 //        Hash 암호 방식
         String token = JWT.create()
                 .withSubject(principal.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 60000 * 10))
+                .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.PXPIRATION_TIME))
                 .withClaim("id", principal.getUserDbId())
                 .withClaim("username", principal.getUsername())
-                .sign(Algorithm.HMAC512("security"));
+                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
 
-        response.setHeader("Authorization","Bearer "+token);
+        response.setHeader(JwtProperties.HEADER_STRING,JwtProperties.TOKEN_PREFIX+token);
     }
 
     public User readUserInfo(ObjectMapper objectMapper, HttpServletRequest request)  {

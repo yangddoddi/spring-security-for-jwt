@@ -17,22 +17,22 @@ import java.io.IOException;
 * */
 
 
-@Slf4j
-public class MyFilter implements Filter {
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-
-
-        log.info("req.getMethod() ? {} ", req.getMethod());
-        String headerAuth = req.getHeader("Authorization");
-        log.info("headerAuth = {}", headerAuth);
-
-        if (headerAuth.equals("security")) {
-            chain.doFilter(req,res);
-        } else {
-            throw new ServletException("잘못된 요청");
-        }
-    }
-}
+//@Slf4j
+//public class MyFilter implements Filter {
+//    @Override
+//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse res = (HttpServletResponse) response;
+//
+//
+//        log.info("req.getMethod() ? {} ", req.getMethod());
+//        String headerAuth = req.getHeader("Authorization");
+//        log.info("headerAuth = {}", headerAuth);
+//
+//        if (headerAuth.equals("security")) {
+//            chain.doFilter(req,res);
+//        } else {
+//            throw new ServletException("잘못된 요청");
+//        }
+//    }
+//}
